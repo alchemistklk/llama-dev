@@ -1,0 +1,16 @@
+version: '3.7'
+service:
+  app:
+    image: llama2-funetune-lora
+    volumes:
+      - /usr/local/nvidia:/usr/local/nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    ports:
+      - 7860:7860 #容器和主机之间的映射端口
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
